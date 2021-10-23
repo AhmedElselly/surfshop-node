@@ -1,0 +1,9 @@
+<% layout('layouts/boilerplate') -%>
+
+<form action="/register" method="POST" enctype="multipart/form-data">
+    <input type="text" name="username" placeholder="Username" value="<%= username %>" required> 
+    <input type="email" name="email" placeholder="Email" value="<%= email %>" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="file" name="image">
+    <input type="submit" value="Register">
+</form>

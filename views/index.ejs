@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate')-%>
+
+<div class="page-header header-filter" data-parallax="true" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="title">
+          <h1><%= title %></h1>
+          <h3>Welcome to The Surf Shop</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="map" style="width: 100%;"></div>
+
+<div>
+    <h2>Recent Posts</h2>
+    <hr>
+    <% recentPosts.forEach((post, i)=>{ %>
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title"><%= post.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= post.price %>$</h6>
+              <p class="card-text"><%= post.description %></p>
+              <a href="/posts/<%= post.id %>" class="card-link">More Info!</a>
+              
+            </div>
+          </div>
+        <!-- <h4><%= post.title %></h4> -->
+        <!-- <h5><%= post.description %></h5> -->
+        
+
+    <%})%>
+    
+</div>
+
+<script>
+    mapboxgl.accessToken = "<%= mapboxToken %>";
+    var posts = {features: <%- JSON.stringify(posts) %>};
+</script>
+
+<script src="/javascripts/allPostsClusterMap.js"></script>

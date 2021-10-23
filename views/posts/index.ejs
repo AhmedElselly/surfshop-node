@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') -%>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <% include ../partials/searchFilter %>
+        </div>
+        <div class="col-8">
+            <div id="map" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+<% include ../partials/paginate %>
+<hr>
+
+<div class="container">
+    <h1>All Posts</h1>
+
+    <% posts.docs.forEach(function(post){ %>
+      
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title"><%= post.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= post.price %>$</h6>
+              <p class="card-text"><%= post.description %></p>
+              <p><%= post.location %></p>
+
+              <a href="/posts/<%= post.id %>" class="card-link">More Info!</a>
+              
+            </div>
+          </div>
+        <hr>
+
+    <% }); %>
+</div>
+
+<% include ../partials/paginate %>
+
+<script>
+    mapboxgl.accessToken = "<%= mapboxToken %>";
+    var posts = {features: <%- JSON.stringify(posts.docs) %>};
+</script>
+
+<script src="/javascripts/allPostsClusterMap.js"></script>
